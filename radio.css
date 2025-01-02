@@ -76,6 +76,7 @@ body {
 	transition: border-color 300ms;
 	width: 16px;
 }
+
 .entry-label {
 	color: #d9d9d960;
 	cursor: pointer;
@@ -84,6 +85,9 @@ body {
 	-moz-user-select: none;
 	font-size: medium;
 	line-height: 20px;
+}
+.hidden:checked + .entry .entry-label {
+	color: #d9d9d9; /* Replace with the desired color */
 }
 .overlay {
 	background: #d9d9d900;
