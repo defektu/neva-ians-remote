@@ -21,9 +21,74 @@ client.onConnectionLost = (response) => {
 
 function onConnect() {
   console.log("Connected to MQTT broker");
+  updateSlider("slider1", "Neva_Unity_MQTT/Content_Scene", 0);
+  updateSlider("slider1", "Neva_Unity_MQTT/Car_GearState", 0);
+  updateSlider("slider1", "Neva_Unity_MQTT/Speed", 0);
 }
 
-function updateSlider(sliderId, topic, value) {
+var localSpeed = 0;
+
+function delay(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function disableInputs() {
+  const inputs = document.querySelectorAll("input"); // Select all input elements
+  inputs.forEach((input) => (input.disabled = true)); // Disable each input
+  console.log("All inputs disabled");
+}
+
+// Function to re-enable all inputs
+function enableInputs() {
+  const inputs = document.querySelectorAll("input"); // Select all input elements
+  inputs.forEach((input) => (input.disabled = false)); // Enable each input
+  console.log("All inputs enabled");
+}
+function setRangeValue(value) {
+  // Get the range input and output elements
+  const range = document.querySelector('input[name="range"]');
+  const output = document.querySelector('output[name="output"]');
+
+  const offset = document.querySelector(".rangeslider-thumb");
+  const offset2 = document.querySelector(".rangeslider-fill-lower");
+
+  offset.style.left = "0px";
+  offset2.style.width = "12px";
+
+  // Update the range value
+  range.value = value;
+
+  // Update the output value
+  output.value = Math.round(range.valueAsNumber);
+
+  // Optionally, call any additional functions like `updateSlider`
+}
+
+async function updateSlider(sliderId, topic, value) {
+  if (topic == "Neva_Unity_MQTT/Speed") {
+    localSpeed = value;
+  }
+  if (topic == "Neva_Unity_MQTT/Car_GearState") {
+    console.log("GearState");
+    console.log(document.getElementsByClassName("speedContainer"));
+    if (value == 3) {
+      document.getElementsByClassName("speedContainer")[0].style.visibility =
+        "visible";
+    } else {
+      if (localSpeed != 0) {
+        localSpeed = 0;
+        document.getElementsByClassName("speedContainer")[0].style.visibility =
+          "hidden";
+        updateSlider("input2", "Neva_Unity_MQTT/Speed", 0);
+        setRangeValue(0);
+        disableInputs();
+        await delay(2000);
+        enableInputs();
+      }
+      document.getElementsByClassName("speedContainer")[0].style.visibility =
+        "hidden";
+    }
+  }
   // Update the displayed value
   //   document.getElementById(`value${sliderId.slice(-1)}`).textContent = value;
 
