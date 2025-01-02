@@ -85,13 +85,13 @@
 		<div class="sliderContainer">
 			<form oninput="
 					output.value = Math.round(range.valueAsNumber)
-					updateSlider('slider1', 'Neva_Unity_MQTT/Speed', range.valueAsNumber / 100)
+					updateSlider('slider1', 'Neva_Unity_MQTT/Speed', range.valueAsNumber)
 					">
 				<!-- <h2>
 						Car Speed
 					</h2> -->
 				<div class="range">
-					<input name="range" id="speedrange" type="range" min="0" max="100" value="0">
+					<input name="range" id="speedrange" type="range" min="0" max="180" value="0">
 					<div class="range-output">
 						<output class="output" name="output" for="range">
 							0
