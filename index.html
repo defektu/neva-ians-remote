@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>MQTT Sliders</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js"></script>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+	<!-- <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css"> -->
+
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="radio.css">
+
+</head>
+
+<body>
+	<br>
+	<div class="logo">
+		<h1>VINVIN Remote</h1>
+		<div class="sublogo">by NevaXR</div>
+	</div>
+
+	<h3>Select Theme</h3>
+
+	<div class="containerOuter">
+		<div class="container">
+			<input type="radio" class="hidden" id="input1_1" name="inputs2" checked="true"
+				oninput="updateSlider('slider1', 'Neva_Unity_MQTT/Content_Scene', 0)">
+			<label class=" entry" for="input1_1">
+				<div class="circle"></div>
+				<div class="entry-label">Traditional</div>
+			</label>
+			<input type="radio" class="hidden" id="input1_2" name="inputs2"
+				oninput="updateSlider('slider1', 'Neva_Unity_MQTT/Content_Scene', 1)">
+			<label class=" entry" for="input1_2">
+				<div class="circle"></div>
+				<div class="entry-label">Space</div>
+			</label>
+			<div class="highlight"></div>
+			<div class="overlay2"></div>
+		</div>
+	</div>
+
+	<h3>Select Gear</h3>
+	<div class="containerOuter">
+		<div class="container">
+			<input type="radio" class="hidden" id="input0" name="inputs" checked="true"
+				oninput="updateSlider('slider1', 'Neva_Unity_MQTT/Car_GearState', 0)">
+			<label class=" entry" for="input0">
+				<div class="circle"></div>
+				<div class="entry-label">Park</div>
+			</label>
+			<input type="radio" class="hidden" id="input1" name="inputs"
+				oninput="updateSlider('slider1', 'Neva_Unity_MQTT/Car_GearState', 0)">
+			<label class=" entry" for="input1">
+				<div class="circle"></div>
+				<div class="entry-label">Ignition</div>
+			</label>
+			<input type="radio" class="hidden" id="input2" name="inputs"
+				oninput="updateSlider('slider1', 'Neva_Unity_MQTT/Car_GearState', 1)">
+			<label class=" entry" for="input2">
+				<div class="circle"></div>
+				<div class="entry-label">Accesory</div>
+			</label>
+			<input type="radio" class="hidden" id="input3" name="inputs"
+				oninput="updateSlider('slider1', 'Neva_Unity_MQTT/Car_GearState', 2)">
+			<label class=" entry" for="input3">
+				<div class="circle"></div>
+				<div class="entry-label">Driving</div>
+			</label>
+			<div class="highlight"></div>
+			<div class="overlay"></div>
+		</div>
+	</div>
+
+	<h3>Adjust Speed</h3>
+	<div class="sliderContainer">
+		<form oninput="
+				output.value = Math.round(range.valueAsNumber)
+				updateSlider('slider1', 'Neva_Unity_MQTT/Speed', range.valueAsNumber / 100)
+				">
+			<!-- <h2>
+					Car Speed
+				</h2> -->
+			<div class="range">
+				<input name="range" type="range" min="0" max="100" value="0">
+				<div class="range-output">
+					<output class="output" name="output" for="range">
+						0
+					</output>
+				</div>
+			</div>
+		</form>
+	</div>
+	<script src="mqtt.js"></script>
+	<script src="slider.js"></script>
+
+</body>
+
+</html>

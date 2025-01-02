@@ -1,0 +1,141 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:600");
+:root {
+	--gap-size: 32px;
+	--circle-gap: 10px;
+}
+
+body {
+	align-items: center;
+	background: #1b1b1b;
+	color: #fafafa;
+	display: flex;
+	flex-direction: column;
+	font-size: 20px;
+	justify-content: center;
+	margin: 0;
+}
+.showOverlay {
+	bottom: 0;
+	display: flex;
+	font-size: 16px;
+	left: calc(50% - 55px);
+	margin-bottom: 7px;
+	position: absolute;
+}
+.check {
+	bottom: 0;
+	display: flex;
+	left: calc(50% + 40px);
+	margin-bottom: 10px;
+	position: absolute;
+}
+.containerOuter {
+	background: #d9d9d90a;
+	border-radius: 8px;
+	border-color: #d9d9d90a;
+	border-style: solid;
+	border-width: 1px;
+
+	/* box-shadow: 2px 6px 20px 2px rgba(10, 10, 120, 0.15); */
+}
+.container {
+	position: relative;
+	margin: 8px;
+	overflow: hidden;
+	width: 75vw;
+}
+
+.hidden {
+	display: none;
+}
+.entry {
+	position: absolute;
+}
+.entry:nth-child(2) {
+	left: var(--circle-gap);
+	top: var(--circle-gap);
+}
+.entry:nth-child(4) {
+	left: var(--circle-gap);
+	top: calc(var(--gap-size) + var(--circle-gap));
+}
+.entry:nth-child(6) {
+	left: var(--circle-gap);
+	top: calc(var(--gap-size) * 2 + var(--circle-gap));
+}
+.entry:nth-child(8) {
+	left: var(--circle-gap);
+	top: calc(var(--gap-size) * 3 + var(--circle-gap));
+}
+.circle {
+	border: 2px solid #545556;
+	border-radius: 50%;
+	cursor: pointer;
+	height: 16px;
+	position: absolute;
+	transition: border-color 300ms;
+	width: 16px;
+}
+.entry-label {
+	color: #d9d9d960;
+	cursor: pointer;
+	padding-left: 32px;
+	user-select: none;
+	-moz-user-select: none;
+	font-size: medium;
+	line-height: 20px;
+}
+.overlay {
+	background: #d9d9d900;
+	height: calc(var(--gap-size) * 4 + 8px);
+	pointer-events: none;
+	transition: background 300ms;
+	width: 40px;
+}
+
+.overlay2 {
+	background: #d9d9d900;
+	height: calc(var(--gap-size) * 2 + 8px);
+	pointer-events: none;
+	transition: background 300ms;
+	width: 40px;
+}
+.highlight {
+	background: #21d48c;
+	border-radius: 50%;
+	height: 12px;
+	left: 14px;
+	pointer-events: none;
+	position: absolute;
+	top: 14px;
+	transition: transform 400ms cubic-bezier(0.175, 0.885, 0.32, 1.2);
+	transform: translateY(-50px);
+	width: 12px;
+}
+.hidden:nth-child(1):checked ~ .highlight {
+	transform: translateY(0);
+}
+.hidden:nth-child(3):checked ~ .highlight {
+	transform: translateY(calc(var(--gap-size)));
+}
+.hidden:nth-child(5):checked ~ .highlight {
+	transform: translateY(calc(var(--gap-size) * 2));
+}
+.hidden:nth-child(7):checked ~ .highlight {
+	transform: translateY(calc(var(--gap-size) * 3));
+}
+.hidden:nth-child(1):checked + .entry .circle {
+	border-color: #21d48c;
+}
+.hidden:nth-child(3):checked + .entry .circle {
+	border-color: #21d48c;
+}
+.hidden:nth-child(5):checked + .entry .circle {
+	border-color: #21d48c;
+}
+.hidden:nth-child(7):checked + .entry .circle {
+	border-color: #21d48c;
+}
+.check:checked ~ .containerOuter .overlay {
+	background: #ecf0f4;
+}
