@@ -4,8 +4,21 @@ const port = 443; // Use 8883 for secure MQTT or 443 for websockets
 const username = "iomust"; // Replace with your Shiftr.io username
 const password = "eqdhdYeiwHmfZl7o"; // Replace with your Shiftr.io password
 
+function getQueryParam(param) {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get(param);
+}
+
+const queryID = getQueryParam("id");
+var topicName = "Neva_Unity_MQTT";
+if (queryID != null) topicName += `_${queryID}`;
+
 // Create an MQTT client
-const client = new Paho.MQTT.Client(broker, port, "webClient-" + Math.random());
+const client = new Paho.MQTT.Client(
+  broker,
+  port,
+  "IansClient-" + Math.random()
+);
 
 // Connect to the broker
 client.connect({
@@ -21,9 +34,9 @@ client.onConnectionLost = (response) => {
 
 function onConnect() {
   console.log("Connected to MQTT broker");
-  updateSlider("slider1", "Neva_Unity_MQTT/Content_Scene", 0);
-  updateSlider("slider1", "Neva_Unity_MQTT/Car_GearState", 0);
-  updateSlider("slider1", "Neva_Unity_MQTT/Speed", 0);
+  updateSlider("slider1", `Content_Scene`, 0);
+  updateSlider("slider1", `Car_GearState`, 0);
+  updateSlider("slider1", `Speed`, 0);
 }
 
 var localSpeed = 0;
@@ -65,12 +78,10 @@ function setRangeValue(value) {
 }
 
 async function updateSlider(sliderId, topic, value) {
-  if (topic == "Neva_Unity_MQTT/Speed") {
+  if (topic == `Speed`) {
     localSpeed = value;
   }
-  if (topic == "Neva_Unity_MQTT/Car_GearState") {
-    console.log("GearState");
-    console.log(document.getElementsByClassName("speedContainer"));
+  if (topic == `Car_GearState`) {
     if (value == 3) {
       document.getElementsByClassName("speedContainer")[0].style.visibility =
         "visible";
@@ -79,7 +90,7 @@ async function updateSlider(sliderId, topic, value) {
         localSpeed = 0;
         document.getElementsByClassName("speedContainer")[0].style.visibility =
           "hidden";
-        updateSlider("input2", "Neva_Unity_MQTT/Speed", 0);
+        updateSlider("input2", `Speed`, 0);
         setRangeValue(0);
         disableInputs();
         await delay(2000);
@@ -94,7 +105,7 @@ async function updateSlider(sliderId, topic, value) {
 
   // Publish the value to the MQTT topic
   const message = new Paho.MQTT.Message(value.toString());
-  message.destinationName = topic;
-  console.log(topic, value.toString());
+  message.destinationName = topicName + "/" + topic;
+  console.log(message.destinationName, value.toString());
   client.send(message);
 }
