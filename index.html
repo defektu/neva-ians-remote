@@ -50,7 +50,7 @@
 				updateSlider('input0', 'Car_GearState', 0)
 				
 				">
-			<label class=" entry" for="input0">
+			<label class="entry" for="input0">
 				<div class="circle"></div>
 				<div class="entry-label">Park</div>
 			</label>
@@ -85,7 +85,7 @@
 		<div class="sliderContainer">
 			<form oninput="
 					output.value = Math.round(range.valueAsNumber)
-					updateSlider('slider1', 'Speed', range.valueAsNumber)
+					updateSlider('slider1', 'MQTT_Speed_Normalized', range.valueAsNumber/180)
 					">
 				<!-- <h2>
 						Car Speed

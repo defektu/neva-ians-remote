@@ -36,7 +36,7 @@ function onConnect() {
   console.log("Connected to MQTT broker");
   updateSlider("slider1", `Content_Scene`, 0);
   updateSlider("slider1", `Car_GearState`, 0);
-  updateSlider("slider1", `Speed`, 0);
+  updateSlider("slider1", `MQTT_Speed_Normalized`, 0);
 }
 
 var localSpeed = 0;
