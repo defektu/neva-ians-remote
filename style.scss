@@ -178,6 +178,18 @@ $offset-y-range-output: 4px;
 	}
 }
 
+.range2 {
+	//Native
+	input[type="range"] {
+		appearance: none;
+		padding: 0;
+		width: $width-range-track;
+		height: $height-range-bounds;
+		cursor: pointer;
+		display: block;
+	}
+}
+
 //Demo stuff
 body {
 	font-family: "Montserrat";
@@ -226,6 +238,19 @@ h1 {
 	border-style: solid;
 	border-width: 1px;
 	padding-top: 52px;
+	padding-bottom: 16px;
+	padding-left: 16px;
+	padding-right: 16px;
+	/* box-shadow: 2px 6px 20px 2px rgba(10, 10, 120, 0.15); */
+}
+.sliderContainer2 {
+	display: flex;
+	background: #d9d9d90a;
+	border-radius: 8px;
+	border-color: #d9d9d90a;
+	border-style: solid;
+	border-width: 1px;
+	padding-top: 16px;
 	padding-bottom: 16px;
 	padding-left: 16px;
 	padding-right: 16px;

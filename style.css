@@ -172,6 +172,17 @@
   transform: translateX(-50%);
 }
 
+.range2 input[type=range] {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  padding: 0;
+  width: 70vw;
+  height: 22px;
+  cursor: pointer;
+  display: block;
+}
+
 body {
   font-family: "Montserrat";
   font-weight: 500;
@@ -221,6 +232,20 @@ h1 {
   border-style: solid;
   border-width: 1px;
   padding-top: 52px;
+  padding-bottom: 16px;
+  padding-left: 16px;
+  padding-right: 16px;
+  /* box-shadow: 2px 6px 20px 2px rgba(10, 10, 120, 0.15); */
+}
+
+.sliderContainer2 {
+  display: flex;
+  background: rgba(217, 217, 217, 0.0392156863);
+  border-radius: 8px;
+  border-color: rgba(217, 217, 217, 0.0392156863);
+  border-style: solid;
+  border-width: 1px;
+  padding-top: 16px;
   padding-bottom: 16px;
   padding-left: 16px;
   padding-right: 16px;
